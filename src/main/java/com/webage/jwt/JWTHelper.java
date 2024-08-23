@@ -17,8 +17,8 @@ public class JWTHelper {
 		
 		try {
 		    Algorithm algorithm = Algorithm.HMAC256("secret");
-		    long fiveHoursInMillis = 1000 * 60 * 60 * 5;
-		    Date expireDate = new Date(System.currentTimeMillis() + fiveHoursInMillis);
+		    long tenHoursInMillis = 1000 * 60 * 60 * 10;
+		    Date expireDate = new Date(System.currentTimeMillis() + tenHoursInMillis);
 		    String token = JWT.create()
 		    	.withSubject("apiuser")
 		        .withIssuer("me@me.com")
@@ -51,7 +51,7 @@ public class JWTHelper {
 		    Algorithm algorithm = Algorithm.HMAC256("secret");
 		    JWTVerifier verifier = JWT.require(algorithm)
 		        .withIssuer("me@me.com")
-		        .build(); //Reusable verifier instance
+		        .build(); 
 		    DecodedJWT jwt = verifier.verify(token);
 		    return jwt.getClaims();
 		} catch (JWTVerificationException exception){
@@ -64,7 +64,7 @@ public class JWTHelper {
 		    Algorithm algorithm = Algorithm.HMAC256("secret");
 		    JWTVerifier verifier = JWT.require(algorithm)
 		        .withIssuer("me@me.com")
-		        .build(); //Reusable verifier instance
+		        .build(); 
 		    DecodedJWT jwt = verifier.verify(token);
 		    return jwt.getClaim("scopes").asString();
 		} catch (JWTVerificationException exception){

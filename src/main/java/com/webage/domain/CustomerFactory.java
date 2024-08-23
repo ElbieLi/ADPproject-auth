@@ -4,12 +4,11 @@ import org.json.JSONObject;
 
 public class CustomerFactory {
 	
+        //this class converts json into a customer object
 	public static Customer getCustomer(String json_string){
 		
-        // parsing file "JSONExample.json" 
         JSONObject jobj = new org.json.JSONObject(json_string); 
           
-        // getting firstName and lastName 
         int id = (int) jobj.get("id");
         String name = (String) jobj.get("name"); 
         String email = (String) jobj.get("email"); 
@@ -24,6 +23,7 @@ public class CustomerFactory {
 		return cust;
 	}
 	
+        //this class converts a customer object to a json
 	public static String getCustomerAsJSONString(Customer customer) {
         JSONObject jo = new JSONObject(); 
         
