@@ -28,16 +28,12 @@ public class RegisterAPI {
 	@PostMapping
 	public ResponseEntity<?> registerCustomer(@RequestBody Customer newCustomer, UriComponentsBuilder uri) {
 		if (newCustomer.getId() != 0 || newCustomer.getName() == null || newCustomer.getEmail() == null) {
-			// Reject we'll assign the customer id
 			return ResponseEntity.badRequest().build();
 		}
 		
 		String json_string = CustomerFactory.getCustomerAsJSONString(newCustomer);
 		
 		postNewCustomerToCustomerAPI(json_string);
-		
-		// old code that calls repository directly
-		// newCustomer = repo.save(newCustomer);
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(newCustomer.getId()).toUri();
@@ -55,7 +51,6 @@ public class RegisterAPI {
 			conn.setRequestProperty("Content-Type", "application/json");
 	  		Token token = TokenAPI.getAppUserToken();
 	  		conn.setRequestProperty("authorization", "Bearer " + token.getToken());
-	  		// conn.setRequestProperty("tokencheck", "false");
 
 			OutputStream os = conn.getOutputStream();
 			os.write(json_string.getBytes());
