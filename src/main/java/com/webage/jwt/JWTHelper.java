@@ -12,9 +12,7 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 public class JWTHelper {
-	/*
-	 * https://github.com/auth0/java-jwt
-	 */
+	
 	public static String createToken(String scopes) {
 		
 		try {
