@@ -41,7 +41,7 @@ public class TokenAPI {
 	
 	private boolean checkPassword(String username, String password) {
 		//special case for application user
-		if(username.equals("ApiClientApp") && password.equals("secret")) {
+		if(username.equals("MyApp") && password.equals("12345")) {
 			return true;
 		}
 		//make call to customer service 
@@ -58,7 +58,7 @@ public class TokenAPI {
 	
 	public static Token getAppUserToken() {
 		if(appUserToken == null || appUserToken.getToken() == null || appUserToken.getToken().length() == 0) {
-			appUserToken = createToken("ApiClientApp");
+			appUserToken = createToken("MyApp");
 		}
 		return appUserToken;
 	}
@@ -66,7 +66,7 @@ public class TokenAPI {
     private static Token createToken(String username) {
     	String scopes = "com.webage.data.apis";
     	//special case for application user
-    	if( username.equalsIgnoreCase("ApiClientApp")) {
+    	if( username.equalsIgnoreCase("MyApp")) {
     		scopes = "com.webage.auth.apis";
     	}
     	String token_string = JWTHelper.createToken(scopes);
