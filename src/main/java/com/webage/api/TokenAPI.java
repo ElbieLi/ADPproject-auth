@@ -39,7 +39,7 @@ public class TokenAPI {
 		
 	}
 	
-	private boolean checkPassword(String username, String password) {
+	public boolean checkPassword(String username, String password) {
 		//special case for application user
 		if(username.equals("MyApp") && password.equals("12345")) {
 			return true;
