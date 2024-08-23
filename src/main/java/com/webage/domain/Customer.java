@@ -1,4 +1,4 @@
-package com.webage.project.domain;
+package com.webage.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
